@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Swap - KiondoNet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5e8;
+            color: #1a3b2f;
+        }
+        .navbar {
+            background: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #1a5d3c; text-decoration: none; }
+        .logo span { color: #00b843; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1a3b2f; font-weight: 500; }
+        .nav-links a:hover { color: #1a5d3c; }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-primary { background: #1a5d3c; color: white; width: 100%; }
+        .btn-primary:hover { background: #0e3d26; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #1a3b2f; }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d4e0d0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #1a5d3c; }
+        .alert {
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .alert-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .footer {
+            background: #0e3d26;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        .footer a { color: #00b843; text-decoration: none; }
+        h1 { text-align: center; margin-bottom: 8px; }
+        .subhead { text-align: center; color: #4a5b52; margin-bottom: 32px; }
+        .value-hint {
+            background: #f0f5e8;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        .row-2cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; }
+            .row-2cols { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🧺 Kiondo<span>Net</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="swap.html">Swap</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>📝 Post a Swap</h1>
+    <p class="subhead">Tell us what you have and what you want</p>
+    
+    <div class="form-container">
+        <form id="swapForm">
+            <!-- SECTION 1: WHAT YOU HAVE -->
+            <div style="background: #f0f5e8; padding: 16px; border-radius: 16px; margin-bottom: 24px;">
+                <h3 style="margin-bottom: 16px; color: #1a5d3c;">📤 What you HAVE</h3>
+                
+                <div class="form-group">
+                    <label>Type of value you have</label>
+                    <select id="haveType" required>
+                        <option value="">Select type</option>
+                        <option value="airtime">💰 Airtime</option>
+                        <option value="data_bundle">📶 Data Bundle</option>
+                        <option value="voice_bundle">📞 Voice Bundle</option>
+                        <option value="night_bundle">🌙 Night Bundle</option>
+                        <option value="mpesa">💵 M-Pesa Cash</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Your network</label>
+                    <select id="haveNetwork" required>
+                        <option value="">Select network</option>
+                        <option value="Safaricom">📱 Safaricom</option>
+                        <option value="Airtel">📱 Airtel</option>
+                        <option value="Telkom">📱 Telkom</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="haveAmountGroup">
+                    <label>Amount (KES)</label>
+                    <input type="number" id="haveAmount" placeholder="e.g., 100" min="1">
+                </div>
+
+                <div class="form-group" id="haveBundleGroup" style="display:none;">
+                    <label>Bundle size</label>
+                    <select id="haveBundleSize">
+                        <option value="">Select bundle size</option>
+                        <option value="100MB">100 MB</option>
+                        <option value="250MB">250 MB</option>
+                        <option value="500MB">500 MB</option>
+                        <option value="1GB">1 GB</option>
+                        <option value="2GB">2 GB</option>
+                        <option value="5GB">5 GB</option>
+                        <option value="10GB">10 GB</option>
+                        <option value="20GB">20 GB</option>
+                        <option value="50 SMS">50 SMS</option>
+                        <option value="100 SMS">100 SMS</option>
+                        <option value="200 SMS">200 SMS</option>
+                        <option value="30 minutes">30 minutes</option>
+                        <option value="60 minutes">60 minutes</option>
+                        <option value="120 minutes">120 minutes</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="expiryGroup" style="display:none;">
+                    <label>Expiry date (if applicable)</label>
+                    <input type="date" id="expiryDate">
+                    <div class="value-hint" id="expiryHint"></div>
+                </div>
+
+                <div class="form-group" id="urgencyGroup" style="display:none;">
+                    <label>Urgency level</label>
+                    <select id="urgency">
+                        <option value="normal">🟢 Normal (7+ days left)</option>
+                        <option value="urgent">🟡 Urgent (2-6 days left)</option>
+                        <option value="critical">🔴 Critical (1 day or less)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECTION 2: WHAT YOU WANT -->
+            <div style="background: #f0f5e8; padding: 16px; border-radius: 16px; margin-bottom: 24px;">
+                <h3 style="margin-bottom: 16px; color: #1a5d3c;">📥 What you WANT</h3>
+                
+                <div class="form-group">
+                    <label>Type of value you want</label>
+                    <select id="wantType" required>
+                        <option value="">Select type</option>
+                        <option value="airtime">💰 Airtime</option>
+                        <option value="data_bundle">📶 Data Bundle</option>
+                        <option value="voice_bundle">📞 Voice Bundle</option>
+                        <option value="night_bundle">🌙 Night Bundle</option>
+                        <option value="mpesa">💵 M-Pesa Cash</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Desired network</label>
+                    <select id="wantNetwork" required>
+                        <option value="">Select network</option>
+                        <option value="Safaricom">📱 Safaricom</option>
+                        <option value="Airtel">📱 Airtel</option>
+                        <option value="Telkom">📱 Telkom</option>
+                        <option value="any">🌍 Any network</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="wantAmountGroup">
+                    <label>Amount (KES) or equivalent value</label>
+                    <input type="number" id="wantAmount" placeholder="e.g., 100" min="1">
+                </div>
+
+                <div class="form-group" id="wantBundleGroup" style="display:none;">
+                    <label>Desired bundle size</label>
+                    <select id="wantBundleSize">
+                        <option value="">Select bundle size</option>
+                        <option value="100MB">100 MB</option>
+                        <option value="250MB">250 MB</option>
+                        <option value="500MB">500 MB</option>
+                        <option value="1GB">1 GB</option>
+                        <option value="2GB">2 GB</option>
+                        <option value="5GB">5 GB</option>
+                        <option value="10GB">10 GB</option>
+                        <option value="50 SMS">50 SMS</option>
+                        <option value="100 SMS">100 SMS</option>
+                        <option value="30 minutes">30 minutes</option>
+                        <option value="60 minutes">60 minutes</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECTION 3: YOUR DETAILS -->
+            <div style="margin-bottom: 24px;">
+                <h3 style="margin-bottom: 16px; color: #1a5d3c;">👤 Your details</h3>
+                
+                <div class="form-group">
+                    <label>Your phone number (WhatsApp)</label>
+                    <input type="tel" id="phone" placeholder="0712345678" required>
+                    <small style="color: #666;">We'll notify you via WhatsApp when a match is found</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Your name</label>
+                    <input type="text" id="name" placeholder="Mary Wanjiku" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Post Swap →</button>
+        </form>
+        
+        <div id="alert"></div>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
+            🔐 10 KES escrow fee applies when matched
+        </p>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>🧺 KiondoNet</strong> — Weave your network. Swap anything. Keep your value.</p>
+    <p>WhatsApp: +1 (555) 123-4567 • Email: hello@kiondonet.co.ke</p>
+</footer>
+
+<script>
+    // Show/hide fields based on "have" type selection
+    const haveType = document.getElementById('haveType');
+    const haveAmountGroup = document.getElementById('haveAmountGroup');
+    const haveBundleGroup = document.getElementById('haveBundleGroup');
+    const expiryGroup = document.getElementById('expiryGroup');
+    const urgencyGroup = document.getElementById('urgencyGroup');
+    
+    // Show/hide fields based on "want" type selection
+    const wantType = document.getElementById('wantType');
+    const wantAmountGroup = document.getElementById('wantAmountGroup');
+    const wantBundleGroup = document.getElementById('wantBundleGroup');
+    
+    function updateHaveFields() {
+        const type = haveType.value;
+        
+        // Hide everything first
+        haveAmountGroup.style.display = 'none';
+        haveBundleGroup.style.display = 'none';
+        expiryGroup.style.display = 'none';
+        urgencyGroup.style.display = 'none';
+        
+        if (type === 'airtime') {
+            haveAmountGroup.style.display = 'block';
+        } else if (type === 'data_bundle' || type === 'voice_bundle' || type === 'night_bundle') {
+            haveBundleGroup.style.display = 'block';
+            expiryGroup.style.display = 'block';
+            urgencyGroup.style.display = 'block';
+        } else if (type === 'mpesa') {
+            haveAmountGroup.style.display = 'block';
+        }
+        
+        // Update expiry hint
+        updateExpiryHint();
+    }
+    
+    function updateWantFields() {
+        const type = wantType.value;
+        
+        wantAmountGroup.style.display = 'none';
+        wantBundleGroup.style.display = 'none';
+        
+        if (type === 'airtime') {
+            wantAmountGroup.style.display = 'block';
+        } else if (type === 'data_bundle' || type === 'voice_bundle' || type === 'night_bundle') {
+            wantBundleGroup.style.display = 'block';
+            wantAmountGroup.style.display = 'block';
+        } else if (type === 'mpesa') {
+            wantAmountGroup.style.display = 'block';
+        }
+    }
+    
+    function updateExpiryHint() {
+        const expiryDate = document.getElementById('expiryDate').value;
+        const hintDiv = document.getElementById('expiryHint');
+        
+        if (expiryDate) {
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            const daysLeft = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
+            
+            if (daysLeft <= 0) {
+                hintDiv.innerHTML = '⚠️ This bundle expires today! Value will be reduced to 30-40% of airtime value.';
+                hintDiv.style.color = '#dc3545';
+            } else if (daysLeft === 1) {
+                hintDiv.innerHTML = '⚠️ Expires tomorrow! Value will be reduced to 50% of airtime value.';
+                hintDiv.style.color = '#fd7e14';
+            } else if (daysLeft <= 3) {
+                hintDiv.innerHTML = `⏰ Expires in ${daysLeft} days. Value will be reduced to 70% of airtime value.`;
+                hintDiv.style.color = '#fd7e14';
+            } else if (daysLeft <= 7) {
+                hintDiv.innerHTML = `📅 Expires in ${daysLeft} days. Value will be reduced to 85% of airtime value.`;
+                hintDiv.style.color = '#1a5d3c';
+            } else {
+                hintDiv.innerHTML = `✅ ${daysLeft} days left. Full value applies.`;
+                hintDiv.style.color = '#28a745';
+            }
+        } else {
+            hintDiv.innerHTML = 'Set expiry date to get accurate value estimate';
+            hintDiv.style.color = '#666';
+        }
+    }
+    
+    // Add event listeners
+    haveType.addEventListener('change', updateHaveFields);
+    wantType.addEventListener('change', updateWantFields);
+    document.getElementById('expiryDate').addEventListener('change', updateExpiryHint);
+    
+    // Initial setup
+    updateHaveFields();
+    updateWantFields();
+    
+    // Form submission
+    document.getElementById('swapForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get values
+        const haveTypeVal = document.getElementById('haveType').value;
+        const haveNetwork = document.getElementById('haveNetwork').value;
+        const haveAmount = document.getElementById('haveAmount').value;
+        const haveBundleSize = document.getElementById('haveBundleSize').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+        const urgency = document.getElementById('urgency').value;
+        
+        const wantTypeVal = document.getElementById('wantType').value;
+        const wantNetwork = document.getElementById('wantNetwork').value;
+        const wantAmount = document.getElementById('wantAmount').value;
+        const wantBundleSize = document.getElementById('wantBundleSize').value;
+        
+        const phone = document.getElementById('phone').value;
+        const name = document.getElementById('name').value;
+        
+        // Validation
+        if (!haveTypeVal || !haveNetwork || !wantTypeVal || !phone || !name) {
+            document.getElementById('alert').innerHTML = '<div class="alert alert-error">❌ Please fill all required fields</div>';
+            return;
+        }
+        
+        // Validate have fields based on type
+        if (haveTypeVal === 'airtime' && !haveAmount) {
+            document.getElementById('alert').innerHTML = '<div class="alert alert-error">❌ Please enter amount for airtime</div>';
+            return;
+        }
+        if ((haveTypeVal === 'data_bundle' || haveTypeVal === 'voice_bundle' || haveTypeVal === 'night_bundle') && !haveBundleSize) {
+            document.getElementById('alert').innerHTML = '<div class="alert alert-error">❌ Please select bundle size</div>';
+            return;
+        }
+        
+        // Validate want fields
+        if (wantTypeVal === 'airtime' && !wantAmount) {
+            document.getElementById('alert').innerHTML = '<div class="alert alert-error">❌ Please enter desired amount</div>';
+            return;
+        }
+        
+        // Create swap object
+        const swapData = {
+            id: Date.now(),
+            haveType: haveTypeVal,
+            haveNetwork: haveNetwork,
+            haveAmount: haveAmount || null,
+            haveBundleSize: haveBundleSize || null,
+            expiryDate: expiryDate || null,
+            urgency: urgency || 'normal',
+            wantType: wantTypeVal,
+            wantNetwork: wantNetwork,
+            wantAmount: wantAmount || null,
+            wantBundleSize: wantBundleSize || null,
+            phone: phone,
+            name: name,
+            status: 'pending',
+            createdAt: new Date().toISOString()
+        };
+        
+        // Prevent swapping to same network if both are airtime/bundle
+        if (haveNetwork === wantNetwork && haveTypeVal !== 'mpesa' && wantTypeVal !== 'mpesa') {
+            document.getElementById('alert').innerHTML = '<div class="alert alert-error">❌ You cannot swap to the same network!</div>';
+            return;
+        }
+        
+        // Save to localStorage
+        let existingSwaps = localStorage.getItem('kiondonet_swaps');
+        if (existingSwaps) {
+            existingSwaps = JSON.parse(existingSwaps);
+        } else {
+            existingSwaps = [];
+        }
+        
+        existingSwaps.push(swapData);
+        localStorage.setItem('kiondonet_swaps', JSON.stringify(existingSwaps));
+        
+        // Create readable summary
+        let haveDisplay = '';
+        if (haveTypeVal === 'airtime') haveDisplay = `${haveAmount} KES ${haveNetwork} airtime`;
+        else if (haveTypeVal === 'mpesa') haveDisplay = `${haveAmount} KES M-Pesa`;
+        else haveDisplay = `${haveBundleSize} ${haveNetwork} ${haveTypeVal.replace('_', ' ')}`;
+        
+        let wantDisplay = '';
+        if (wantTypeVal === 'airtime') wantDisplay = `${wantAmount} KES ${wantNetwork} airtime`;
+        else if (wantTypeVal === 'mpesa') wantDisplay = `${wantAmount} KES M-Pesa`;
+        else wantDisplay = `${wantBundleSize} ${wantNetwork} ${wantTypeVal.replace('_', ' ')}`;
+        
+        // Show success
+        document.getElementById('alert').innerHTML = `
+            <div class="alert alert-success">
+                ✅ Swap posted successfully!<br><br>
+                <strong>You have:</strong> ${haveDisplay}<br>
+                <strong>You want:</strong> ${wantDisplay}<br><br>
+                We'll notify you via WhatsApp when a match is found.
+            </div>
+        `;
+        
+        // Reset form
+        document.getElementById('swapForm').reset();
+        updateHaveFields();
+        updateWantFields();
+        
+        // Clear alert after 5 seconds
+        setTimeout(() => {
+            document.getElementById('alert').innerHTML = '';
+        }, 5000);
+    });
+</script>
+</body>
+</html>
