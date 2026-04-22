@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - KiondoNet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5e8;
+            color: #1a3b2f;
+        }
+        .navbar {
+            background: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #1a5d3c; text-decoration: none; }
+        .logo span { color: #00b843; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1a3b2f; font-weight: 500; }
+        .nav-links a:hover { color: #1a5d3c; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 { text-align: center; margin-bottom: 16px; color: #1a5d3c; }
+        .subhead { text-align: center; color: #4a5b52; margin-bottom: 48px; font-size: 18px; }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0 60px;
+        }
+        .step {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 32px 24px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .step-number {
+            background: #1a5d3c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .step h3 { margin-bottom: 12px; color: #1a5d3c; }
+        .step p { color: #4a5b52; line-height: 1.5; }
+        
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            color: #1a5d3c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .example-card {
+            background: #f0f5e8;
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid #1a5d3c;
+        }
+        .example-card h4 { margin-bottom: 12px; color: #1a5d3c; }
+        .example-card p { margin-bottom: 8px; }
+        .swap-arrow-large {
+            font-size: 28px;
+            text-align: center;
+            color: #1a5d3c;
+        }
+        .value-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .value-table th, .value-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #d4e0d0;
+        }
+        .value-table th {
+            background: #1a5d3c;
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+        .value-table tr:last-child td { border-bottom: none; }
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .footer {
+            background: #0e3d26;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        .footer a { color: #00b843; text-decoration: none; }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary { background: #1a5d3c; color: white; }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; }
+            .step { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🧺 Kiondo<span>Net</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="swap.html">Swap</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>📖 How KiondoNet Works</h1>
+    <p class="subhead">Swap airtime, bundles, and M-Pesa in 4 simple steps</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Post Your Swap</h3>
+            <p>Tell us what you have (airtime, bundle, or M-Pesa) and what you want in return.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>We Find a Match</h3>
+            <p>Our matching engine finds someone who wants exactly what you have and has what you want.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Pay Escrow Fee</h3>
+            <p>Pay 10 KES via M-Pesa to secure the swap. This protects both parties.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <h3>Swap Complete</h3>
+            <p>Both parties receive their airtime or bundles. You keep 95%+ of your value.</p>
+        </div>
+    </div>
+
+    <!-- What You Can Swap -->
+    <div class="section">
+        <h2>🔄 What You Can Swap on KiondoNet</h2>
+        <div class="example-grid">
+            <div class="example-card">
+                <h4>💰 Airtime → Airtime</h4>
+                <p>100 KES Safaricom ↔ 100 KES Airtel</p>
+                <p>Direct swap, full value.</p>
+            </div>
+            <div class="example-card">
+                <h4>📶 Bundle → Airtime</h4>
+                <p>2GB Safaricom bundle ↔ 80 KES Airtel airtime</p>
+                <p>Value depends on expiry date.</p>
+            </div>
+            <div class="example-card">
+                <h4>📶 Bundle → Bundle</h4>
+                <p>2GB Safaricom ↔ 1GB Airtel + 50 KES</p>
+                <p>Partial swap with top-up.</p>
+            </div>
+            <div class="example-card">
+                <h4>💵 M-Pesa → Bundle</h4>
+                <p>50 KES cash ↔ 1GB Telkom night bundle</p>
+                <p>Buy bundles from other users.</p>
+            </div>
+            <div class="example-card">
+                <h4>🌙 Night Bundle → Day Bundle</h4>
+                <p>1GB Airtel night ↔ 500MB Safaricom day</p>
+                <p>Swap time-specific bundles.</p>
+            </div>
+            <div class="example-card">
+                <h4>📞 Voice Bundle → Data Bundle</h4>
+                <p>100 minutes Airtel ↔ 2GB Telkom data</p>
+                <p>Cross-type swapping.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real Example -->
+    <div class="section">
+        <h2>🎯 Real Example</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+            <div style="flex: 1; background: #f0f5e8; padding: 24px; border-radius: 16px; text-align: center;">
+                <div style="font-size: 48px; margin-bottom: 12px;">👩🏾</div>
+                <h3>Mary</h3>
+                <p><strong>Has:</strong> 2GB Safaricom data bundle<br>
+                <strong>Expires:</strong> In 2 days<br>
+                <strong>Wants:</strong> 80 KES Airtel airtime</p>
+            </div>
+            <div class="swap-arrow-large">🔄</div>
+            <div style="flex: 1; background: #f0f5e8; padding: 24px; border-radius: 16px; text-align: center;">
+                <div style="font-size: 48px; margin-bottom: 12px;">👨🏾</div>
+                <h3>John</h3>
+                <p><strong>Has:</strong> 100 KES Airtel airtime<br>
+                <strong>Wants:</strong> Data bundle for Safaricom<br>
+                <strong>Needs:</strong> 2GB for streaming</p>
+            </div>
+        </div>
+        <div class="tip-box" style="margin-top: 24px; text-align: center;">
+            <strong>✅ KiondoNet matches them.</strong> Mary gets 80 KES Airtel airtime. John gets 2GB Safaricom data. No value lost to middlemen.
+        </div>
+    </div>
+
+    <!-- Bundle Value Calculator -->
+    <div class="section">
+        <h2>📊 Bundle Value Calculator</h2>
+        <p>Expiring bundles lose value over time. KiondoNet automatically calculates fair market rates:</p>
+        <table class="value-table">
+            <thead>
+                <tr><th>Bundle Type</th><th>Time Left</th><th>Value (% of airtime)</th><th>Example (2GB bundle)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Data / Voice / SMS</td><td>7+ days</td><td>85%</td><td>Worth ~85 KES airtime</td></tr>
+                <tr><td>Data / Voice / SMS</td><td>2-6 days</td><td>70%</td><td>Worth ~70 KES airtime</td></tr>
+                <tr><td>Data / Voice / SMS</td><td>1 day</td><td>50%</td><td>Worth ~50 KES airtime</td></tr>
+                <tr><td>Any bundle</td><td>Expires today</td><td>30-40%</td><td>Worth ~30-40 KES airtime</td></tr>
+                <tr><td>Night Bundle</td><td>Any</td><td>40%</td><td>Limited time use</td></tr>
+            </tbody>
+        </table>
+        <div class="warning-box">
+            <strong>⚠️ Pro tip:</strong> Post your expiring bundles at least 3 days before expiry to get better value. Last-minute swaps get lower rates but are better than losing everything!
+        </div>
+    </div>
+
+    <!-- How Matching Works -->
+    <div class="section">
+        <h2>🔍 How Matching Works</h2>
+        <p>KiondoNet uses smart matching to find your perfect swap partner:</p>
+        <div class="example-grid">
+            <div class="example-card">
+                <h4>Exact Match</h4>
+                <p>You have 100 KES Safaricom → Someone wants 100 KES Safaricom and has 100 KES Airtel</p>
+            </div>
+            <div class="example-card">
+                <h4>Value Match</h4>
+                <p>You have 2GB bundle (worth 70 KES due to expiry) → Someone offers 70 KES Airtel</p>
+            </div>
+            <div class="example-card">
+                <h4>Partial Match</h4>
+                <p>You have 5GB bundle → Someone offers 2GB + 100 KES airtime</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Escrow Protection -->
+    <div class="section">
+        <h2>🔒 M-Pesa Escrow Protection</h2>
+        <p>Every swap on KiondoNet is protected by M-Pesa escrow:</p>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+            <li>You pay a small 10 KES escrow fee when matched</li>
+            <li>Money is held safely until both parties confirm the swap</li>
+            <li>If something goes wrong, we investigate and refund</li>
+            <li>No more scams on WhatsApp groups</li>
+        </ul>
+        <div class="tip-box" style="margin-top: 16px;">
+            <strong>💡 Note:</strong> The 10 KES fee is refunded if the swap completes successfully. It only goes to KiondoNet if someone cancels unfairly.
+        </div>
+    </div>
+
+    <!-- WhatsApp Integration -->
+    <div class="section">
+        <h2>💬 WhatsApp Integration</h2>
+        <p>You don't need to download any app. Everything happens via WhatsApp:</p>
+        <ul style="margin-left: 20px; line-height: 1.8;">
+            <li>📱 Post swaps on our website or via WhatsApp</li>
+            <li>🔔 Get instant notifications when a match is found</li>
+            <li>✅ Confirm swaps with one tap</li>
+            <li>📞 Works on any phone — smartphone or basic phone</li>
+        </ul>
+    </div>
+
+    <!-- FAQ Quick -->
+    <div class="section">
+        <h2>❓ Quick FAQ</h2>
+        <div class="example-grid">
+            <div class="example-card">
+                <h4>How much does it cost?</h4>
+                <p>Posting is free. Only 10 KES escrow fee when matched.</p>
+            </div>
+            <div class="example-card">
+                <h4>How long until I get a match?</h4>
+                <p>Usually within 24 hours. Urgent bundles match faster.</p>
+            </div>
+            <div class="example-card">
+                <h4>What if someone scams me?</h4>
+                <p>M-Pesa escrow protects you. Money is held until swap completes.</p>
+            </div>
+            <div class="example-card">
+                <h4>Can I swap across all networks?</h4>
+                <p>Yes! Safaricom, Airtel, Telkom — any combination.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="swap.html" class="btn btn-primary">📱 Start Your First Swap Now →</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>🧺 KiondoNet</strong> — Weave your network. Swap anything. Keep your value.</p>
+    <p>WhatsApp: +1 (555) 123-4567 • Email: hello@kiondonet.co.ke</p>
+    <p style="margin-top: 20px; font-size: 12px;">© 2026 KiondoNet. Swapping Kenya.</p>
+</footer>
+</body>
+</html>
