@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - KiondoNet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5e8;
+            color: #1a3b2f;
+        }
+        .navbar {
+            background: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #1a5d3c; text-decoration: none; }
+        .logo span { color: #00b843; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1a3b2f; font-weight: 500; }
+        .nav-links a:hover { color: #1a5d3c; }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-danger:hover { background: #c82333; }
+        .btn-small { padding: 6px 12px; font-size: 12px; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-success:hover { background: #218838; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .stat-number { font-size: 36px; font-weight: bold; color: #1a5d3c; }
+        .stat-label { color: #4a5b52; font-size: 14px; margin-top: 8px; }
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: 1px solid #d4e0d0;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .filter-btn.active {
+            background: #1a5d3c;
+            color: white;
+            border-color: #1a5d3c;
+        }
+        .swap-list {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .swap-item {
+            padding: 20px;
+            border-bottom: 1px solid #d4e0d0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .swap-info {
+            flex: 2;
+        }
+        .swap-arrow {
+            font-size: 24px;
+            color: #1a5d3c;
+        }
+        .swap-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-matched { background: #d4edda; color: #155724; }
+        .status-completed { background: #cce5ff; color: #004085; }
+        .urgency-critical { background: #dc3545; color: white; }
+        .urgency-urgent { background: #fd7e14; color: white; }
+        .urgency-normal { background: #28a745; color: white; }
+        .expiry-warning { font-size: 12px; margin-top: 8px; }
+        .expiry-critical { color: #dc3545; font-weight: bold; }
+        .expiry-urgent { color: #fd7e14; }
+        .expiry-normal { color: #28a745; }
+        .swap-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        .footer {
+            background: #0e3d26;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        .footer a { color: #00b843; text-decoration: none; }
+        h1 { margin-bottom: 8px; }
+        .subhead { color: #4a5b52; margin-bottom: 32px; }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; }
+            .swap-item { flex-direction: column; text-align: center; }
+            .swap-details { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🧺 Kiondo<span>Net</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="swap.html">Swap</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>👋 My Dashboard</h1>
+    <p class="subhead">Track your swaps, bundles, and expiry dates</p>
+    
+    <div class="dashboard-stats">
+        <div class="stat-card"><div class="stat-number" id="totalSwaps">0</div><div class="stat-label">Total Swaps</div></div>
+        <div class="stat-card"><div class="stat-number" id="activeSwaps">0</div><div class="stat-label">Active (Pending)</div></div>
+        <div class="stat-card"><div class="stat-number" id="matchedSwaps">0</div><div class="stat-label">Matched</div></div>
+        <div class="stat-card"><div class="stat-number" id="completedSwaps">0</div><div class="stat-label">Completed</div></div>
+        <div class="stat-card"><div class="stat-number" id="expiringSoon">0</div><div class="stat-label">Expiring Soon</div></div>
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="pending">⏳ Pending</button>
+        <button class="filter-btn" data-filter="matched">🔄 Matched</button>
+        <button class="filter-btn" data-filter="completed">✅ Completed</button>
+        <button class="filter-btn" data-filter="expiring">⚠️ Expiring (≤3 days)</button>
+    </div>
+
+    <div class="swap-list" id="swapList"></div>
+    
+    <div style="text-align: center; margin-top: 32px;">
+        <a href="swap.html" class="btn" style="background: #1a5d3c; color: white; padding: 12px 28px;">+ Post New Swap</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>🧺 KiondoNet</strong> — Weave your network. Swap anything. Keep your value.</p>
+    <p>WhatsApp: +1 (555) 123-4567 • Email: hello@kiondonet.co.ke</p>
+</footer>
+
+<script>
+    let currentFilter = 'all';
+    let allSwaps = [];
+    
+    // Helper: Get display text for have value
+    function getHaveDisplay(swap) {
+        if (swap.haveType === 'airtime') {
+            return `${swap.haveAmount} KES ${swap.haveNetwork} airtime`;
+        } else if (swap.haveType === 'mpesa') {
+            return `${swap.haveAmount} KES M-Pesa`;
+        } else if (swap.haveType === 'data_bundle') {
+            return `${swap.haveBundleSize} ${swap.haveNetwork} data bundle`;
+        } else if (swap.haveType === 'voice_bundle') {
+            return `${swap.haveBundleSize} ${swap.haveNetwork} voice bundle`;
+        } else if (swap.haveType === 'night_bundle') {
+            return `${swap.haveBundleSize} ${swap.haveNetwork} night bundle`;
+        }
+        return 'Unknown';
+    }
+    
+    // Helper: Get display text for want value
+    function getWantDisplay(swap) {
+        if (swap.wantType === 'airtime') {
+            return `${swap.wantAmount} KES ${swap.wantNetwork} airtime`;
+        } else if (swap.wantType === 'mpesa') {
+            return `${swap.wantAmount} KES M-Pesa`;
+        } else if (swap.wantType === 'data_bundle') {
+            return `${swap.wantBundleSize} ${swap.wantNetwork} data bundle`;
+        } else if (swap.wantType === 'voice_bundle') {
+            return `${swap.wantBundleSize} ${swap.wantNetwork} voice bundle`;
+        } else if (swap.wantType === 'night_bundle') {
+            return `${swap.wantBundleSize} ${swap.wantNetwork} night bundle`;
+        }
+        return 'Unknown';
+    }
+    
+    // Helper: Calculate days until expiry
+    function getDaysUntilExpiry(expiryDate) {
+        if (!expiryDate) return null;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const expiry = new Date(expiryDate);
+        expiry.setHours(0, 0, 0, 0);
+        const diffTime = expiry - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays;
+    }
+    
+    // Helper: Get expiry warning class and text
+    function getExpiryInfo(expiryDate) {
+        const days = getDaysUntilExpiry(expiryDate);
+        if (!days) return null;
+        
+        if (days < 0) {
+            return { class: 'expiry-critical', text: '❌ Expired!' };
+        } else if (days === 0) {
+            return { class: 'expiry-critical', text: '⚠️ Expires TODAY!' };
+        } else if (days === 1) {
+            return { class: 'expiry-critical', text: `⚠️ Expires tomorrow! (${days} day left)` };
+        } else if (days <= 3) {
+            return { class: 'expiry-urgent', text: `⏰ Expires in ${days} days` };
+        } else if (days <= 7) {
+            return { class: 'expiry-normal', text: `📅 Expires in ${days} days` };
+        }
+        return { class: 'expiry-normal', text: `✅ ${days} days left` };
+    }
+    
+    // Helper: Get urgency badge
+    function getUrgencyBadge(urgency) {
+        if (urgency === 'critical') {
+            return '<span class="badge urgency-critical">🔴 Critical</span>';
+        } else if (urgency === 'urgent') {
+            return '<span class="badge urgency-urgent">🟡 Urgent</span>';
+        }
+        return '<span class="badge urgency-normal">🟢 Normal</span>';
+    }
+    
+    // Load and display dashboard
+    function loadDashboard() {
+        let swaps = localStorage.getItem('kiondonet_swaps');
+        if (swaps) {
+            allSwaps = JSON.parse(swaps);
+        } else {
+            allSwaps = [];
+        }
+        
+        // Calculate stats
+        const total = allSwaps.length;
+        const active = allSwaps.filter(s => s.status === 'pending').length;
+        const matched = allSwaps.filter(s => s.status === 'matched').length;
+        const completed = allSwaps.filter(s => s.status === 'completed').length;
+        
+        // Count expiring soon (bundles with 3 days or less left)
+        let expiringSoon = 0;
+        allSwaps.forEach(swap => {
+            if (swap.expiryDate && (swap.haveType === 'data_bundle' || swap.haveType === 'voice_bundle' || swap.haveType === 'night_bundle')) {
+                const days = getDaysUntilExpiry(swap.expiryDate);
+                if (days !== null && days >= 0 && days <= 3) {
+                    expiringSoon++;
+                }
+            }
+        });
+        
+        document.getElementById('totalSwaps').innerText = total;
+        document.getElementById('activeSwaps').innerText = active;
+        document.getElementById('matchedSwaps').innerText = matched;
+        document.getElementById('completedSwaps').innerText = completed;
+        document.getElementById('expiringSoon').innerText = expiringSoon;
+        
+        // Filter swaps
+        let filteredSwaps = allSwaps;
+        if (currentFilter === 'pending') {
+            filteredSwaps = allSwaps.filter(s => s.status === 'pending');
+        } else if (currentFilter === 'matched') {
+            filteredSwaps = allSwaps.filter(s => s.status === 'matched');
+        } else if (currentFilter === 'completed') {
+            filteredSwaps = allSwaps.filter(s => s.status === 'completed');
+        } else if (currentFilter === 'expiring') {
+            filteredSwaps = allSwaps.filter(s => {
+                if (s.expiryDate && (s.haveType === 'data_bundle' || s.haveType === 'voice_bundle' || s.haveType === 'night_bundle')) {
+                    const days = getDaysUntilExpiry(s.expiryDate);
+                    return days !== null && days >= 0 && days <= 3;
+                }
+                return false;
+            });
+        }
+        
+        // Display swaps
+        const swapList = document.getElementById('swapList');
+        if (filteredSwaps.length === 0) {
+            if (allSwaps.length === 0) {
+                swapList.innerHTML = '<div class="empty-state">📭 No swaps yet. <a href="swap.html">Post your first swap →</a></div>';
+            } else {
+                swapList.innerHTML = '<div class="empty-state">🔍 No swaps match this filter. Try another.</div>';
+            }
+            return;
+        }
+        
+        let html = '';
+        filteredSwaps.forEach(swap => {
+            // Status badge
+            let statusClass = '';
+            let statusText = '';
+            switch(swap.status) {
+                case 'pending': statusClass = 'status-pending'; statusText = '⏳ Pending'; break;
+                case 'matched': statusClass = 'status-matched'; statusText = '🔄 Matched'; break;
+                case 'completed': statusClass = 'status-completed'; statusText = '✅ Completed'; break;
+                default: statusClass = 'status-pending'; statusText = 'Pending';
+            }
+            
+            // Expiry info (if bundle)
+            let expiryHtml = '';
+            if (swap.expiryDate && (swap.haveType === 'data_bundle' || swap.haveType === 'voice_bundle' || swap.haveType === 'night_bundle')) {
+                const expiryInfo = getExpiryInfo(swap.expiryDate);
+                if (expiryInfo) {
+                    expiryHtml = `<div class="expiry-warning ${expiryInfo.class}">${expiryInfo.text}</div>`;
+                }
+            }
+            
+            // Value hint for bundles (estimated worth)
+            let valueHintHtml = '';
+            if (swap.expiryDate && (swap.haveType === 'data_bundle' || swap.haveType === 'voice_bundle' || swap.haveType === 'night_bundle')) {
+                const days = getDaysUntilExpiry(swap.expiryDate);
+                let percent = 85;
+                if (days !== null) {
+                    if (days <= 0) percent = 30;
+                    else if (days === 1) percent = 50;
+                    else if (days <= 3) percent = 70;
+                    else if (days <= 7) percent = 85;
+                    else percent = 95;
+                }
+                valueHintHtml = `<div style="font-size: 11px; color: #666; margin-top: 4px;">💡 Est. value: ${percent}% of airtime</div>`;
+            }
+            
+            html += `
+                <div class="swap-item">
+                    <div class="swap-info">
+                        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 8px;">
+                            <strong>${swap.name || 'Anonymous'}</strong>
+                            <span class="badge ${statusClass}">${statusText}</span>
+                            ${swap.urgency ? getUrgencyBadge(swap.urgency) : ''}
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+                            <span><strong>📤 Have:</strong> ${getHaveDisplay(swap)}</span>
+                            <span class="swap-arrow">→</span>
+                            <span><strong>📥 Want:</strong> ${getWantDisplay(swap)}</span>
+                        </div>
+                        ${expiryHtml}
+                        ${valueHintHtml}
+                        <div class="swap-details">
+                            <small>📅 Posted: ${new Date(swap.createdAt).toLocaleDateString()}</small>
+                            ${swap.expiryDate ? `<small>⏰ Expires: ${new Date(swap.expiryDate).toLocaleDateString()}</small>` : ''}
+                        </div>
+                    </div>
+                    <div class="swap-actions">
+                        ${swap.status === 'pending' ? `<button class="btn btn-success btn-small" onclick="markMatched(${swap.id})">Mark Matched</button>` : ''}
+                        ${swap.status === 'matched' ? `<button class="btn btn-success btn-small" onclick="markCompleted(${swap.id})">Mark Completed</button>` : ''}
+                        <button class="btn btn-danger btn-small" onclick="deleteSwap(${swap.id})">Delete</button>
+                    </div>
+                </div>
+            `;
+        });
+        swapList.innerHTML = html;
+    }
+    
+    function deleteSwap(id) {
+        if (confirm('Are you sure you want to delete this swap?')) {
+            allSwaps = allSwaps.filter(swap => swap.id !== id);
+            localStorage.setItem('kiondonet_swaps', JSON.stringify(allSwaps));
+            loadDashboard();
+        }
+    }
+    
+    function markMatched(id) {
+        const index = allSwaps.findIndex(swap => swap.id === id);
+        if (index !== -1) {
+            allSwaps[index].status = 'matched';
+            localStorage.setItem('kiondonet_swaps', JSON.stringify(allSwaps));
+            loadDashboard();
+        }
+    }
+    
+    function markCompleted(id) {
+        const index = allSwaps.findIndex(swap => swap.id === id);
+        if (index !== -1) {
+            allSwaps[index].status = 'completed';
+            localStorage.setItem('kiondonet_swaps', JSON.stringify(allSwaps));
+            loadDashboard();
+        }
+    }
+    
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.getAttribute('data-filter');
+            loadDashboard();
+        });
+    });
+    
+    // Initial load
+    loadDashboard();
+</script>
+</body>
+</html>
