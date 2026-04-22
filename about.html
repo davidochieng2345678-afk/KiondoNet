@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - KiondoNet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5e8;
+            color: #1a3b2f;
+        }
+        .navbar {
+            background: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #1a5d3c; text-decoration: none; }
+        .logo span { color: #00b843; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1a3b2f; font-weight: 500; }
+        .nav-links a:hover { color: #1a5d3c; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 { text-align: center; margin-bottom: 16px; color: #1a5d3c; }
+        .subhead { text-align: center; color: #4a5b52; margin-bottom: 48px; font-size: 18px; }
+        
+        .about-section {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .about-section h2 {
+            color: #1a5d3c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .about-section p {
+            line-height: 1.7;
+            margin-bottom: 16px;
+            color: #2d5a3b;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .value-card {
+            background: #f0f5e8;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .value-card:hover { transform: translateY(-5px); }
+        .value-icon { font-size: 48px; margin-bottom: 16px; }
+        .value-card h3 { margin-bottom: 12px; color: #1a5d3c; }
+        .value-card p { font-size: 14px; color: #4a5b52; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+            text-align: center;
+        }
+        .stat-number-large {
+            font-size: 48px;
+            font-weight: bold;
+            color: #1a5d3c;
+        }
+        .stat-label-large { color: #4a5b52; margin-top: 8px; }
+        
+        .kiondo-box {
+            background: #1a5d3c;
+            color: white;
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .kiondo-box h3 { font-size: 28px; margin-bottom: 16px; }
+        .kiondo-box p { color: #d4e0d0; }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .team-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .team-avatar {
+            font-size: 64px;
+            margin-bottom: 12px;
+        }
+        
+        .footer {
+            background: #0e3d26;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        .footer a { color: #00b843; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🧺 Kiondo<span>Net</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="swap.html">Swap</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>🧺 About KiondoNet</h1>
+    <p class="subhead">Weaving Kenya's mobile networks together</p>
+
+    <!-- Our Story -->
+    <div class="about-section">
+        <h2>📖 Our Story</h2>
+        <p>KiondoNet was born from a simple observation: millions of Kenyans waste airtime and bundles every month because they're on the "wrong" network. You have Safaricom airtime but need to call an Airtel number. Your friend has Airtel data but needs Safaricom. Your bundle expires tomorrow and you won't use it.</p>
+        <p>Existing solutions take 15-30% of your value. WhatsApp groups are unregulated and full of scams. There was no trusted, fair, and easy way to swap mobile value across networks.</p>
+        <p>So we built KiondoNet — Kenya's first peer-to-peer platform for swapping airtime, bundles, and M-Pesa across Safaricom, Airtel, and Telkom.</p>
+    </div>
+
+    <!-- The Name -->
+    <div class="kiondo-box">
+        <h3>🧺 Why "KiondoNet"?</h3>
+        <p>A <strong>Kiondo</strong> is a traditional handwoven basket — strong, flexible, and made to carry what matters. It represents community, trust, and connection.</p>
+        <p style="margin-top: 16px;"><strong>KiondoNet</strong> weaves together Kenya's mobile networks into one connected basket where value flows freely between users.</p>
+        <p style="margin-top: 16px; font-style: italic;">"Weave your network."</p>
+    </div>
+
+    <!-- Our Mission -->
+    <div class="about-section">
+        <h2>🎯 Our Mission</h2>
+        <p><strong>To unlock the full value of every Kenyan's airtime and bundles.</strong></p>
+        <p>No middlemen taking 30% cuts. No wasted expiring bundles. No scams. Just direct, trusted swaps between real people using M-Pesa escrow and WhatsApp.</p>
+    </div>
+
+    <!-- Our Values -->
+    <div class="about-section">
+        <h2>💚 Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🔒</div>
+                <h3>Trust First</h3>
+                <p>M-Pesa escrow protects every swap. No release until both parties confirm.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💰</div>
+                <h3>Fair Value</h3>
+                <p>Keep 95%+ of what you have. No hidden fees or unfair cuts.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🇰🇪</div>
+                <h3>For Kenyans</h3>
+                <p>Built locally, for local needs. We understand the Kenyan mobile market.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📱</div>
+                <h3>Accessible</h3>
+                <p>Works on any phone, any network. No app download required.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⏰</div>
+                <h3>No Waste</h3>
+                <p>Expiring bundles get matched urgently. Nothing goes to waste.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💬</div>
+                <h3>Community</h3>
+                <p>We're building a trusted community of swappers across Kenya.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact So Far -->
+    <div class="about-section">
+        <h2>📊 Our Impact</h2>
+        <div class="stats-grid">
+            <div>
+                <div class="stat-number-large">500+</div>
+                <div class="stat-label-large">Active Swappers</div>
+            </div>
+            <div>
+                <div class="stat-number-large">2,000+</div>
+                <div class="stat-label-large">Swaps Completed</div>
+            </div>
+            <div>
+                <div class="stat-number-large">250,000+</div>
+                <div class="stat-label-large">KES Value Saved</div>
+            </div>
+            <div>
+                <div class="stat-number-large">3</div>
+                <div class="stat-label-large">Networks Connected</div>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 14px; color: #666;">*Numbers growing daily as more Kenyans join KiondoNet</p>
+    </div>
+
+    <!-- What Makes Us Different -->
+    <div class="about-section">
+        <h2>⭐ What Makes KiondoNet Different</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🔄</div>
+                <h3>Peer-to-Peer</h3>
+                <p>Direct swaps between users. No middleman taking a big cut.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📦</div>
+                <h3>Bundle Support</h3>
+                <p>Swap data bundles, voice bundles, night bundles — not just airtime.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⏰</div>
+                <h3>Expiry Matching</h3>
+                <p>Urgent matching for expiring bundles. Get value before it's gone.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💵</div>
+                <h3>M-Pesa Escrow</h3>
+                <p>Your money is safe. No release until both parties confirm.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Problem We Solve -->
+    <div class="about-section">
+        <h2>⚠️ The Problem We Solve</h2>
+        <div class="example-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="background: #f8d7da; padding: 20px; border-radius: 16px;">
+                <h3 style="color: #721c24;">Before KiondoNet</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Lose 30% to middlemen</li>
+                    <li>Bundles expire worthless</li>
+                    <li>Scams on WhatsApp groups</li>
+                    <li>No cross-network swapping</li>
+                    <li>Manual, frustrating process</li>
+                </ul>
+            </div>
+            <div style="background: #d4edda; padding: 20px; border-radius: 16px;">
+                <h3 style="color: #155724;">With KiondoNet</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Keep 95%+ of your value</li>
+                    <li>Swap expiring bundles</li>
+                    <li>M-Pesa escrow protection</li>
+                    <li>Swap across all networks</li>
+                    <li>Automated, seamless process</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vision -->
+    <div class="about-section">
+        <h2>🚀 Our Vision</h2>
+        <p>To become Kenya's largest peer-to-peer mobile value exchange platform. We envision a future where:</p>
+        <ul style="margin-left: 40px; line-height: 1.8; margin-top: 16px;">
+            <li>No airtime or bundle ever goes to waste</li>
+            <li>Every Kenyan can swap value instantly across any network</li>
+            <li>KiondoNet becomes the default way to exchange mobile value</li>
+            <li>We expand beyond Kenya to other African markets</li>
+        </ul>
+    </div>
+
+    <!-- Call to Action -->
+    <div style="background: #1a5d3c; border-radius: 24px; padding: 48px; text-align: center; color: white; margin-top: 20px;">
+        <h2 style="margin-bottom: 16px;">Ready to Join KiondoNet?</h2>
+        <p style="margin-bottom: 24px;">Start swapping airtime and bundles today. No app download. Just WhatsApp + M-Pesa.</p>
+        <a href="swap.html" class="btn" style="background: #00b843; color: white; padding: 14px 32px;">📱 Post Your First Swap →</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>🧺 KiondoNet</strong> — Weave your network. Swap anything. Keep your value.</p>
+    <p>WhatsApp: +1 (555) 123-4567 • Email: hello@kiondonet.co.ke</p>
+    <p style="margin-top: 20px; font-size: 12px;">© 2026 KiondoNet. Swapping Kenya.</p>
+</footer>
+</body>
+</html>
