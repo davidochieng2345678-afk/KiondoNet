@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KiondoNet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5e8;
+            color: #1a3b2f;
+        }
+        .navbar {
+            background: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 24px; font-weight: bold; color: #1a5d3c; text-decoration: none; }
+        .logo span { color: #00b843; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1a3b2f; font-weight: 500; }
+        .nav-links a:hover { color: #1a5d3c; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 { text-align: center; margin-bottom: 16px; color: #1a5d3c; }
+        .subhead { text-align: center; color: #4a5b52; margin-bottom: 48px; font-size: 18px; }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .contact-card {
+            background: white;
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .contact-card:hover { transform: translateY(-5px); }
+        .contact-icon { font-size: 48px; margin-bottom: 16px; }
+        .contact-card h3 { margin-bottom: 12px; color: #1a5d3c; }
+        .contact-card p { margin-bottom: 8px; color: #4a5b52; }
+        .contact-card a { 
+            color: #1a5d3c; 
+            text-decoration: none; 
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .contact-card a:hover { text-decoration: underline; }
+        
+        .form-container {
+            background: white;
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        .form-container h2 {
+            color: #1a5d3c;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #1a3b2f; }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d4e0d0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1a5d3c;
+        }
+        .btn {
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            background: #1a5d3c;
+            color: white;
+            width: 100%;
+        }
+        .btn:hover { background: #0e3d26; }
+        .alert {
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .info-box {
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .info-box h3 {
+            color: #1a5d3c;
+            margin-bottom: 16px;
+        }
+        .info-box ul {
+            list-style: none;
+            line-height: 2;
+        }
+        .info-box li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hours-open { color: #28a745; font-weight: bold; }
+        .hours-closed { color: #dc3545; }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 16px;
+        }
+        .whatsapp-btn:hover { background: #128C7E; }
+        
+        .footer {
+            background: #0e3d26;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        .footer a { color: #00b843; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🧺 Kiondo<span>Net</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="swap.html">Swap</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>📞 Contact Us</h1>
+    <p class="subhead">We're here to help. Choose how you'd like to reach us.</p>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h3>WhatsApp</h3>
+            <p>Fastest response. Message us anytime.</p>
+            <p><strong>+1 (555) 123-4567</strong></p>
+            <a href="https://wa.me/15551234567?text=Hello%20KiondoNet%2C%20I%20need%20help%20with%20a%20swap" target="_blank" class="whatsapp-btn" style="display: inline-flex; background: #25D366; padding: 10px 20px; border-radius: 40px;">
+                💬 Chat on WhatsApp →
+            </a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p>For detailed inquiries or partnership requests.</p>
+            <p><a href="mailto:hello@kiondonet.co.ke">hello@kiondonet.co.ke</a></p>
+            <p><small>Response within 24 hours</small></p>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">📱</div>
+            <h3>Call / SMS</h3>
+            <p>For urgent issues only.</p>
+            <p><strong>+254 700 000 000</strong></p>
+            <p><small>Mon-Fri, 9am-5pm</small></p>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h2>✉️ Send us a message</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label>Your full name</label>
+                <input type="text" id="name" placeholder="Mary Wanjiku" required>
+            </div>
+            <div class="form-group">
+                <label>Your phone number (WhatsApp)</label>
+                <input type="tel" id="phone" placeholder="0712345678" required>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <select id="subject" required>
+                    <option value="">Select subject</option>
+                    <option value="swap_issue">🔄 Swap Issue</option>
+                    <option value="payment">💰 M-Pesa / Payment</option>
+                    <option value="match">🎯 Matching Problem</option>
+                    <option value="bundle">📶 Bundle Question</option>
+                    <option value="partnership">🤝 Partnership / Business</option>
+                    <option value="other">📝 Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea rows="5" id="message" placeholder="Tell us what you need help with..." required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message →</button>
+        </form>
+        <div id="alert"></div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-box">
+            <h3>🕐 Support Hours</h3>
+            <ul>
+                <li>📅 Monday - Friday: <span class="hours-open">9:00 AM - 6:00 PM</span></li>
+                <li>📅 Saturday: <span class="hours-open">10:00 AM - 3:00 PM</span></li>
+                <li>📅 Sunday: <span class="hours-closed">Closed</span></li>
+                <li>📅 Public Holidays: <span class="hours-closed">Closed</span></li>
+            </ul>
+            <p style="margin-top: 16px;"><small>Messages sent outside hours will be answered the next business day.</small></p>
+        </div>
+        <div class="info-box">
+            <h3>❓ Common Issues</h3>
+            <ul>
+                <li>🔍 <strong>No match found?</strong> Try posting a different swap type.</li>
+                <li>💰 <strong>Escrow payment failed?</strong> Check your M-Pesa balance.</li>
+                <li>⏰ <strong>Expiring bundle?</strong> Mark it as urgent for faster matching.</li>
+                <li>🔄 <strong>Swap not completing?</strong> Contact both parties via WhatsApp.</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h3>🤝 Business Inquiries</h3>
+            <p>Are you a business looking to partner with KiondoNet? We're open to:</p>
+            <ul style="margin-top: 12px;">
+                <li>📱 Bulk SMS/WhatsApp partnerships</li>
+                <li>🏪 M-Pesa Paybill/Till integrations</li>
+                <li>📢 Advertising on our platform</li>
+                <li>🌍 Expansion collaborations</li>
+            </ul>
+            <p style="margin-top: 12px;">Email us at <strong>partnerships@kiondonet.co.ke</strong></p>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>🧺 KiondoNet</strong> — Weave your network. Swap anything. Keep your value.</p>
+    <p>WhatsApp: +1 (555) 123-4567 • Email: hello@kiondonet.co.ke</p>
+    <p style="margin-top: 20px; font-size: 12px;">© 2026 KiondoNet. Swapping Kenya.</p>
+</footer>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Validate phone number (Kenyan format)
+        const phoneRegex = /^(07|01|02)[0-9]{8}$/;
+        if (!phoneRegex.test(phone)) {
+            document.getElementById('alert').innerHTML = '<div class="alert alert-error">❌ Please enter a valid Kenyan phone number (e.g., 0712345678)</div>';
+            setTimeout(() => {
+                document.getElementById('alert').innerHTML = '';
+            }, 3000);
+            return;
+        }
+        
+        // Store in localStorage
+        let messages = localStorage.getItem('kiondonet_contacts');
+        if(messages) {
+            messages = JSON.parse(messages);
+        } else {
+            messages = [];
+        }
+        
+        messages.push({
+            id: Date.now(),
+            name: name,
+            phone: phone,
+            subject: subject,
+            message: message,
+            status: 'unread',
+            date: new Date().toISOString()
+        });
+        
+        localStorage.setItem('kiondonet_contacts', JSON.stringify(messages));
+        
+        // Get subject display text
+        const subjectSelect = document.getElementById('subject');
+        const subjectText = subjectSelect.options[subjectSelect.selectedIndex]?.text || subject;
+        
+        // Show success
+        document.getElementById('alert').innerHTML = `
+            <div class="alert alert-success">
+                ✅ Message sent successfully!<br><br>
+                <strong>Subject:</strong> ${subjectText}<br>
+                <strong>We'll respond within 24 hours via WhatsApp to ${phone}</strong><br><br>
+                Thank you for contacting KiondoNet.
+            </div>
+        `;
+        
+        // Reset form
+        document.getElementById('contactForm').reset();
+        
+        // Clear alert after 5 seconds
+        setTimeout(() => {
+            document.getElementById('alert').innerHTML = '';
+        }, 5000);
+    });
+    
+    // Auto-format phone number as user types
+    document.getElementById('phone').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.startsWith('0') && value.length <= 10) {
+            e.target.value = value;
+        } else if (value.length > 10) {
+            e.target.value = value.slice(0, 10);
+        }
+    });
+</script>
+</body>
+</html>
