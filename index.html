@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiondoNet - Swap Airtime & Bundles Across Networks</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f0f5e8;
+            color: #1a3b2f;
+            line-height: 1.5;
+        }
+        .navbar {
+            background: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a5d3c;
+            text-decoration: none;
+        }
+        .logo span { color: #00b843; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1a3b2f; font-weight: 500; }
+        .nav-links a:hover { color: #1a5d3c; }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-primary { background: #1a5d3c; color: white; }
+        .btn-primary:hover { background: #0e3d26; }
+        .btn-accent { background: #00b843; color: white; }
+        .btn-outline { background: transparent; border: 2px solid #1a5d3c; color: #1a5d3c; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .hero { text-align: center; padding: 60px 20px; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .hero h1 span { color: #00b843; }
+        .hero p { font-size: 20px; color: #4a5b52; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .card-icon { font-size: 48px; margin-bottom: 16px; }
+        .card h3 { margin-bottom: 12px; color: #1a5d3c; }
+        .swap-types {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            margin: 40px 0;
+        }
+        .swap-types h2 { text-align: center; margin-bottom: 24px; }
+        .swap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .swap-type-item {
+            background: #f0f5e8;
+            padding: 16px;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .urgent-badge {
+            background: #ff4757;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .footer {
+            background: #0e3d26;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        .footer a { color: #00b843; text-decoration: none; }
+        .value-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .value-table th, .value-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #d4e0d0;
+        }
+        .value-table th { background: #1a5d3c; color: white; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .navbar { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">🧺 Kiondo<span>Net</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="swap.html">Swap</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="hero">
+        <h1>Swap Airtime & Bundles Across <span>Safaricom, Airtel & Telkom</span></h1>
+        <p>No more wasted airtime or expiring bundles. Swap directly with other Kenyans. M-Pesa escrow keeps everyone safe.</p>
+        <a href="swap.html" class="btn btn-primary">📱 Start Swapping →</a>
+        <a href="how-it-works.html" class="btn btn-outline">📖 How it works</a>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">💰</div>
+            <h3>Airtime ↔ Airtime</h3>
+            <p>100 KES Safaricom ↔ 100 KES Airtel. Direct swap.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📶</div>
+            <h3>Bundle ↔ Airtime</h3>
+            <p>2GB Safaricom bundle ↔ 80 KES Airtel airtime.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔄</div>
+            <h3>Bundle ↔ Bundle</h3>
+            <p>2GB Safaricom ↔ 1GB Airtel + 50 KES airtime.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">💵</div>
+            <h3>M-Pesa ↔ Bundle</h3>
+            <p>50 KES cash ↔ 1GB Telkom night bundle.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🌙</div>
+            <h3>Night Bundle Swap</h3>
+            <p>Swap night bundles across all networks.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⏰</div>
+            <h3>Expiring Bundles</h3>
+            <p>Get value before they expire. <span class="urgent-badge">Urgent matching</span></p>
+        </div>
+    </div>
+
+    <div class="swap-types">
+        <h2>🎯 What Can You Swap on KiondoNet?</h2>
+        <div class="swap-grid">
+            <div class="swap-type-item">💰 Airtime → Airtime</div>
+            <div class="swap-type-item">💰 Airtime → Bundle</div>
+            <div class="swap-type-item">📶 Bundle → Airtime</div>
+            <div class="swap-type-item">📶 Bundle → Bundle</div>
+            <div class="swap-type-item">📶 Bundle → M-Pesa</div>
+            <div class="swap-type-item">💵 M-Pesa → Bundle</div>
+            <div class="swap-type-item">🌙 Night Bundle → Airtime</div>
+            <div class="swap-type-item">🌙 Night Bundle → Day Bundle</div>
+            <div class="swap-type-item">📞 Voice Bundle → Data Bundle</div>
+        </div>
+    </div>
+
+    <div style="background: white; border-radius: 24px; padding: 32px; margin: 40px 0;">
+        <h2 style="text-align: center;">📊 Fair Value Calculator</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Expiring bundles get automatic discounts. No middlemen taking 30%.</p>
+        <table class="value-table">
+            <thead>
+                <tr><th>Bundle Type</th><th>Time Left</th><th>Value (vs airtime)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Data Bundle (any network)</td><td>7+ days</td><td>85%</td></tr>
+                <tr><td>Data Bundle (any network)</td><td>2-6 days</td><td>70%</td></tr>
+                <tr><td>Data Bundle (any network)</td><td>1 day</td><td>50%</td></tr>
+                <tr><td>Night Bundle</td><td>Expires today</td><td>40%</td></tr>
+                <tr><td>Voice Bundle</td><td>Any</td><td>80%</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size: 12px; color: #666; text-align: center;">You set your own rate. This is our recommended fair market value.</p>
+    </div>
+
+    <div style="background: #1a5d3c; border-radius: 24px; padding: 40px; text-align: center; color: white;">
+        <h2 style="margin-bottom: 16px;">Join 500+ Kenyans Swapping Daily</h2>
+        <p style="margin-bottom: 24px;">No middlemen. No app download. Just WhatsApp + M-Pesa.</p>
+        <a href="swap.html" class="btn" style="background: #00b843; color: white; padding: 14px 32px;">Post Your Swap Now →</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>🧺 KiondoNet</strong> — Weave your network. Swap anything. Keep your value.</p>
+    <p>WhatsApp: +1 (555) 123-4567 • Email: hello@kiondonet.co.ke</p>
+    <p style="margin-top: 20px; font-size: 12px;">© 2026 KiondoNet. Swapping Kenya.</p>
+</footer>
+
+<script>
+    // Check if user has swaps in localStorage
+    if(localStorage.getItem('kiondonet_swaps')) {
+        const swaps = JSON.parse(localStorage.getItem('kiondonet_swaps'));
+        const pendingCount = swaps.filter(s => s.status === 'pending').length;
+        if(pendingCount > 0) {
+            console.log(`You have ${pendingCount} active swap(s)`);
+        }
+    }
+</script>
+</body>
+</html>
